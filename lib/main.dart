@@ -14,26 +14,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
+      title: 'Project Find',
+      debugShowCheckedModeBanner: false,color: Colors.teal[200],
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal ,
+          backgroundColor: Colors.teal[200],
       ),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -50,10 +44,10 @@ class _SplashScreenState extends State<SplashScreen> {
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       Timer(
           const Duration(seconds: 3),
-          () => {
-                debugPrint("route"),
+          ()  {
+                debugPrint("route");
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const AuthScreen()))
+                    MaterialPageRoute(builder: (context) => const AuthScreen()));
               });
     });
   }

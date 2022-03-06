@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:project_find/auth/otpScreen.dart';
+import 'package:project_find/constants/colors.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -9,9 +11,10 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  late double width, height;
   TextEditingController usernameController = TextEditingController();
   ScrollController scrollController = ScrollController();
+
+  late double width, height;
 
   @override
   void initState() {
@@ -25,17 +28,18 @@ class _AuthScreenState extends State<AuthScreen> {
     height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.teal[200],
+      backgroundColor: kprimaryLightColor,
       body: SafeArea(
-        child: Container(
-          padding: const EdgeInsets.all(25),
-          width: width,
-          height: height,
-          alignment: Alignment.topCenter,
-          color: Colors.teal[200],
-          child: SingleChildScrollView(
-            controller: scrollController,
+        child: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          controller: scrollController,
+          child: Container(
+            padding: const EdgeInsets.all(25),
+            width: width,
+            alignment: Alignment.topCenter,
+            color: kprimaryLightColor,
             child: Column(
+              mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Align(
@@ -73,12 +77,20 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 const SizedBox(height: 20),
                 MaterialButton(
-                  child: const Text("Send OTP",
-                      style: TextStyle(
-                        color: Colors.white,
-                      )),
-                  color: Colors.teal[700],
-                  onPressed: () => {},
+                  color: kprimaryDarkColor,
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const OtpScreen()));
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Send OTP",
+                        style: TextStyle(color: Colors.white, fontSize: 16)),
+                  ),
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
                 ),
               ],
             ),
